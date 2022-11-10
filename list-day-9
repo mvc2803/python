@@ -1,0 +1,261 @@
+Python 3.9.13 (tags/v3.9.13:6de2ca5, May 17 2022, 16:36:42) [MSC v.1929 64 bit (AMD64)] on win32
+Type "help", "copyright", "credits" or "license()" for more information.
+>>> # set
+>>> # syntax
+>>> s = {()}
+>>> d = {}
+>>> type(d)
+<class 'dict'>
+>>> s = set()
+>>> type(s)
+<class 'set'>
+>>> # Properties of set
+>>> # Does not sequence order
+>>> # Indexing & slicing not allowed
+>>> # Duplicates elements not allowed
+>>> # background data structure is hash table
+>>> s = {25,40,85,89,50}
+>>> s
+{50, 85, 40, 89, 25}
+>>> s
+{50, 85, 40, 89, 25}
+>>> s[0]
+Traceback (most recent call last):
+  File "<pyshell#15>", line 1, in <module>
+    s[0]
+TypeError: 'set' object is not subscriptable
+>>> s
+{50, 85, 40, 89, 25}
+>>> # hash function
+>>> # %
+>>> 
+>>> 
+>>> 50%10
+0
+>>> 85%10
+5
+>>> s[:]
+Traceback (most recent call last):
+  File "<pyshell#23>", line 1, in <module>
+    s[:]
+TypeError: 'set' object is not subscriptable
+>>> s
+{50, 85, 40, 89, 25}
+>>> s.add(50)
+>>> s
+{50, 85, 40, 89, 25}
+>>> # duplicates not allowed
+>>> s.add(90)
+>>> s
+{50, 85, 40, 89, 90, 25}
+>>> l = [5,4,7,5,4,8,10]
+>>> l
+[5, 4, 7, 5, 4, 8, 10]
+>>> set(l)
+{4, 5, 7, 8, 10}
+>>> # MEthods of set
+>>> dir(set)
+['__and__', '__class__', '__class_getitem__', '__contains__', '__delattr__', '__dir__', '__doc__', '__eq__', '__format__', '__ge__', '__getattribute__', '__gt__', '__hash__', '__iand__', '__init__', '__init_subclass__', '__ior__', '__isub__', '__iter__', '__ixor__', '__le__', '__len__', '__lt__', '__ne__', '__new__', '__or__', '__rand__', '__reduce__', '__reduce_ex__', '__repr__', '__ror__', '__rsub__', '__rxor__', '__setattr__', '__sizeof__', '__str__', '__sub__', '__subclasshook__', '__xor__', 'add', 'clear', 'copy', 'difference', 'difference_update', 'discard', 'intersection', 'intersection_update', 'isdisjoint', 'issubset', 'issuperset', 'pop', 'remove', 'symmetric_difference', 'symmetric_difference_update', 'union', 'update']
+>>> # add
+>>> s
+{50, 85, 40, 89, 90, 25}
+>>> s.add(100)
+>>> s
+{50, 100, 85, 40, 89, 90, 25}
+>>> l
+[5, 4, 7, 5, 4, 8, 10]
+>>> s.add(11,55)
+Traceback (most recent call last):
+  File "<pyshell#40>", line 1, in <module>
+    s.add(11,55)
+TypeError: set.add() takes exactly one argument (2 given)
+>>> s.add((12,45))
+>>> s
+{50, 100, 85, (12, 45), 40, 89, 90, 25}
+>>> s.add(l)
+Traceback (most recent call last):
+  File "<pyshell#43>", line 1, in <module>
+    s.add(l)
+TypeError: unhashable type: 'list'
+>>> s.add('python')
+>>> s
+{(12, 45), 85, 89, 90, 25, 100, 'python', 40, 50}
+>>> #############################
+>>> # i want to add (12,45) separetly
+>>> # update()
+>>> help(s.update)
+Help on built-in function update:
+
+update(...) method of builtins.set instance
+    Update a set with the union of itself and others.
+
+>>> 
+>>> s
+{(12, 45), 85, 89, 90, 25, 100, 'python', 40, 50}
+>>> s.update((12,45))
+>>> s
+{(12, 45), 12, 85, 89, 90, 25, 100, 'python', 40, 45, 50}
+>>> # if i add already supplied values in set
+>>> s.update((12,45))
+>>> s
+{(12, 45), 12, 85, 89, 90, 25, 100, 'python', 40, 45, 50}
+>>> s.update([11,20])
+>>> s
+{(12, 45), 11, 12, 20, 85, 89, 90, 25, 100, 'python', 40, 45, 50}
+>>> s.update('datascience')
+>>> s
+{'d', 'i', (12, 45), 11, 12, 't', 'e', 20, 85, 89, 90, 25, 'a', 100, 'python', 40, 45, 's', 50, 'n', 'c'}
+>>> #####################################
+>>> x = {'abhishek','reva','akshay','anisa'}
+>>> x
+{'akshay', 'anisa', 'abhishek', 'reva'}
+>>> # discard()
+>>> help(x.discard)
+Help on built-in function discard:
+
+discard(...) method of builtins.set instance
+    Remove an element from a set if it is a member.
+    
+    If the element is not a member, do nothing.
+
+>>> x.discard('reva')
+>>> x
+{'akshay', 'anisa', 'abhishek'}
+>>> x.discard('reva')
+>>> x
+{'akshay', 'anisa', 'abhishek'}
+>>> x.add('suraj')
+>>> x
+{'anisa', 'abhishek', 'suraj', 'akshay'}
+>>> len(x)
+4
+>>> x.discard('akshay')
+>>> x
+{'anisa', 'abhishek', 'suraj'}
+>>> len(x)
+3
+>>> x.discard('anisa', 'abhishek')
+Traceback (most recent call last):
+  File "<pyshell#76>", line 1, in <module>
+    x.discard('anisa', 'abhishek')
+TypeError: set.discard() takes exactly one argument (2 given)
+>>> ###########################################
+>>> # pop()
+>>> help(s.pop)
+Help on built-in function pop:
+
+pop(...) method of builtins.set instance
+    Remove and return an arbitrary set element.
+    Raises KeyError if the set is empty.
+
+>>> s
+{'d', 'i', (12, 45), 11, 12, 't', 'e', 20, 85, 89, 90, 25, 'a', 100, 'python', 40, 45, 's', 50, 'n', 'c'}
+>>> s.pop()
+'d'
+>>> # It removes arbitrary element and returns the removed element
+>>> x
+{'anisa', 'abhishek', 'suraj'}
+>>> x.pop()
+'anisa'
+>>> # arbitrary means - first or last element
+>>> x
+{'abhishek', 'suraj'}
+>>> s
+{'i', (12, 45), 11, 12, 't', 'e', 20, 85, 89, 90, 25, 'a', 100, 'python', 40, 45, 's', 50, 'n', 'c'}
+>>> s.pop()
+'i'
+>>> s.pop()
+(12, 45)
+>>> s.pop(11)
+Traceback (most recent call last):
+  File "<pyshell#90>", line 1, in <module>
+    s.pop(11)
+TypeError: set.pop() takes no arguments (1 given)
+>>> s.pop()
+11
+>>> s
+{12, 't', 'e', 20, 85, 89, 90, 25, 'a', 100, 'python', 40, 45, 's', 50, 'n', 'c'}
+>>> s.pop()
+12
+>>> ##############################
+>>> # remove()
+>>> help(s.remove)
+Help on built-in function remove:
+
+remove(...) method of builtins.set instance
+    Remove an element from a set; it must be a member.
+    
+    If the element is not a member, raise a KeyError.
+
+>>> s.remove(20)
+>>> s
+{'t', 'e', 85, 89, 90, 25, 'a', 100, 'python', 40, 45, 's', 50, 'n', 'c'}
+>>> s.remove(20)
+Traceback (most recent call last):
+  File "<pyshell#99>", line 1, in <module>
+    s.remove(20)
+KeyError: 20
+>>> 20 in s
+False
+>>> # remove() - we have supply argument
+>>> s.remove()
+Traceback (most recent call last):
+  File "<pyshell#102>", line 1, in <module>
+    s.remove()
+TypeError: set.remove() takes exactly one argument (0 given)
+>>> #
+>>> # what is discard, pop, remove?
+>>> # differentiate them?
+>>> # pop() - remove arbitrary element
+>>> # discard() - remove element if it is present
+>>> # remove() - remove element, if not present raise key error
+>>> 
+>>> d = set()
+>>> d
+set()
+>>> d.pop()
+Traceback (most recent call last):
+  File "<pyshell#112>", line 1, in <module>
+    d.pop()
+KeyError: 'pop from an empty set'
+>>> d.discard(10)
+>>> d
+set()
+>>> d.remove(10)
+Traceback (most recent call last):
+  File "<pyshell#115>", line 1, in <module>
+    d.remove(10)
+KeyError: 10
+>>> dir(set)
+['__and__', '__class__', '__class_getitem__', '__contains__', '__delattr__', '__dir__', '__doc__', '__eq__', '__format__', '__ge__', '__getattribute__', '__gt__', '__hash__', '__iand__', '__init__', '__init_subclass__', '__ior__', '__isub__', '__iter__', '__ixor__', '__le__', '__len__', '__lt__', '__ne__', '__new__', '__or__', '__rand__', '__reduce__', '__reduce_ex__', '__repr__', '__ror__', '__rsub__', '__rxor__', '__setattr__', '__sizeof__', '__str__', '__sub__', '__subclasshook__', '__xor__', 'add', 'clear', 'copy', 'difference', 'difference_update', 'discard', 'intersection', 'intersection_update', 'isdisjoint', 'issubset', 'issuperset', 'pop', 'remove', 'symmetric_difference', 'symmetric_difference_update', 'union', 'update']
+>>> s.remove(10,20)
+Traceback (most recent call last):
+  File "<pyshell#117>", line 1, in <module>
+    s.remove(10,20)
+TypeError: set.remove() takes exactly one argument (2 given)
+>>> l
+[5, 4, 7, 5, 4, 8, 10]
+>>> # reverse is method of list
+>>> # reversed is python funtion
+>>> # reversed applicable for str,tuple,list
+>>> l.reverse()
+>>> l
+[10, 8, 4, 5, 7, 4, 5]
+>>> reversed(l)
+<list_reverseiterator object at 0x0000013895EC0EE0>
+>>> list(reversed(l))
+[5, 4, 7, 5, 4, 8, 10]
+>>> # reverse is inplace
+>>> # reversed is temporary
+>>> help(__sizeof__)
+Traceback (most recent call last):
+  File "<pyshell#128>", line 1, in <module>
+    help(__sizeof__)
+NameError: name '__sizeof__' is not defined
+>>> help(l.__sizeof__)
+Help on built-in function __sizeof__:
+
+__sizeof__() method of builtins.list instance
+    Return the size of the list in memory, in bytes.
+
+>>> 
